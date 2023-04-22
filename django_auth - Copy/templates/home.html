@@ -1,0 +1,69 @@
+
+{% extends 'base.html' %}
+
+{% block navbar-content%}
+<i style="color: yellowgreen;" class="fas fa-user-alt"></i>&nbsp;&nbsp; Transactions
+{% endblock navbar-content%}
+
+{% block title %}Home{% endblock %}
+
+
+
+{% block content %}
+ 
+
+
+
+
+{% if user.is_authenticated %}
+  Tere {{ user.username }}!
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  <p><a href="{% url 'accountView' %}">Kasutaja</a></p>
+
+  <!--<h2> Lisa makse:</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button onclick="location.href='/'" type="submit">OK</button>
+    </form>-->
+
+  <div class="container">
+    <br><br><br>
+    
+
+    <table class="table table-bordered" id="example" style="text-align: center;">
+      <thead class="table-success">
+        <tr>
+          <!--<th>ID</th>-->
+          <th>Maksja</th>
+          <th>Kellele võlgnetakse</th>
+          <th>Rahakogus</th>
+          <th>Põhjus</th>
+        </tr>
+      </thead>
+      <!-- data from backend-->
+      {% for makse in maksed %}
+      
+      
+
+      <tr>
+        <!--<td>{{ makse.id }}</td>-->
+        <td>{{ makse.maksja }}</td>
+        <td>{{ makse.saaja }}</td>
+        <td>{{ makse.rahahulk }}</td>
+        <td>{{ makse.pohjus}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  
+  </div>
+  
+  <br><br><br><br>
+  
+
+        
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+
+
+{% extends 'base.html' %}
+{% block title %}Sisestus:{% endblock %}
+{% block content %}
+
+
+<button onclick="location.href='/'">Koduleht</button>
+<button onclick="location.href='/accounts/logout/'">Log out</button>
+
+<h2>Üldiselt kuidas sul võlgnevustega</h2>
+   <p>Sa võlgned: {{ volgnen }}</p>
+    <p>sulle võlgnetakse: {{ juures }}</p>
+    <p>Kokku: {{ kokku }}</p> 
+
+<h2>Lisa tabelisse makse</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button onclick="location.href='/'"  type="submit">SISESTA (ET KODULEHELE TAGASI SAADA VAJUTA "KODULEHT" NUPULE)</button>
+    </form>
+
+
+
+{% endblock %}
